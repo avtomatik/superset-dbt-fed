@@ -1,0 +1,17 @@
+[project]
+name = "superset-dbt-fed"
+version = "0.1.0"
+description = "An end-to-end data pipeline for Federal Reserve Economic Data (FRED) data."
+readme = "README.md"
+requires-python = ">=3.12"
+
+dependencies = [
+    "dbt-core>=1.11.2",
+    "dbt-duckdb>=1.10.0",
+    "duckdb>=1.4.3",
+    "duckdb-engine>=0.17.0",
+    "pandas>=2.3.3",
+    "python-dotenv>=1.2.1",
+    "requests>=2.32.5",
+    "sqlalchemy>=2.0.44",
+]
