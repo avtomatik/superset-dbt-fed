@@ -1,0 +1,14 @@
+{{ config(materialized = 'table') }} WITH raw AS (
+  SELECT
+    date,
+    value :: DOUBLE PRECISION AS gdp_value
+  FROM
+    {{ source('fred', 'gdpc1') }}
+)
+SELECT
+  date :: DATE AS date,
+  gdp_value
+FROM
+  raw
+ORDER BY
+  date
