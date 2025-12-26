@@ -1,6 +1,7 @@
-# superset-dbt-fed
+# FRED Data Pipeline with Superset and DBT
+An end-to-end data pipeline for Federal Reserve Economic Data (FRED).
 
-# Project Setup and Instructions
+## Project Setup and Instructions
 
 Follow these steps to get started with the project:
 
@@ -20,7 +21,9 @@ Open the `.env` file and paste your `FRED_API_KEY` to authenticate with the exte
 FRED_API_KEY=your_fred_api_key_here
 ```
 
-### Step 3: Set Up & Activate & Synchronize Virtual Environment
+### Step 3: Set Up, Activate & Synchronize Virtual Environment
+
+Set up and activate your virtual environment, then synchronize it.
 
 ```bash
 $ uv venv
@@ -28,13 +31,20 @@ $ source .venv/bin/activate
 $ uv sync
 ```
 
----
+### Step 4: Run the Data Ingestion Script
 
-### Running the DBT Project
+To fetch the data from the external API, run the `fred_downloader.py` script. This will download the necessary data before running any transformations.
 
-To run your DBT project and execute a transformation, use the following command:
+```bash
+$ uv run python data_ingestion/fred_downloader.py
+```
+
+### Step 5: Running the DBT Project
+
+Now that your data is ingested, you can run your DBT project and execute a transformation:
 
 ```bash
 $ uv run dbt run --project-dir dbt_project [--select stg_fred_gdpc1 gdp_yearly]
 ```
+
 ---
