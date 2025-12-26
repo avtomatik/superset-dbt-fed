@@ -2,8 +2,10 @@ name: "superset_dbt_fed"
 version: "0.1.0"
 profile: "superset_dbt_fed"
 
+model-paths: ["models"]
+
 models:
-  superset-dbt-fed:
+  superset_dbt_fed:
     staging:
       +materialized: table
     marts:

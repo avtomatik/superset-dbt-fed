@@ -35,6 +35,6 @@ $ uv sync
 To run your DBT project and execute a transformation, use the following command:
 
 ```bash
-$ uv run dbt run --project-dir dbt_project --select stg_fred_gdpc1 gdp_yearly  # Expected to Fail: to Be Continued...
+$ uv run dbt run --project-dir dbt_project [--select stg_fred_gdpc1 gdp_yearly]
 ```
 ---

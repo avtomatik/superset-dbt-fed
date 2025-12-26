@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: gdp_yearly
+    description: "Yearly GDP aggregated using geometric mean"
+    columns:
+      - name: year
+        tests:
+          - not_null
+          - unique
+
+      - name: gdp_value
+        description: "Geometric mean GDP per year"

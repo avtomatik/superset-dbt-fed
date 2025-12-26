@@ -144,6 +144,15 @@ wheels = [
 ]
 
 [[package]]
+name = "dbt"
+version = "1.0.0.40.12"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "setuptools" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/d4/63/892313e2ca6d7d573c39e5006322b42ab16d00a27204211e77193888ee64/dbt-1.0.0.40.12.tar.gz", hash = "sha256:919a61f3dfe75b1eff47f90caf2dd99a9d3d387b70453b2f805fda49cbf55e06", size = 3323, upload-time = "2025-12-04T21:19:37.415Z" }
+
+[[package]]
 name = "dbt-adapters"
 version = "1.22.2"
 source = { registry = "https://pypi.org/simple" }
@@ -1057,6 +1066,15 @@ wheels = [
 ]
 
 [[package]]
+name = "setuptools"
+version = "80.9.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/18/5d/3bf57dcd21979b887f014ea83c24ae194cfcd12b9e0fda66b957c69d1fca/setuptools-80.9.0.tar.gz", hash = "sha256:f36b47402ecde768dbfafc46e8e4207b4360c654f1f3bb84475f0a28628fb19c", size = 1319958, upload-time = "2025-05-27T00:56:51.443Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a3/dc/17031897dae0efacfea57dfd3a82fdd2a2aeb58e0ff71b77b87e44edc772/setuptools-80.9.0-py3-none-any.whl", hash = "sha256:062d34222ad13e0cc312a4c02d73f059e86a4acbfbdea8f8f76b28c99f306922", size = 1201486, upload-time = "2025-05-27T00:56:49.664Z" },
+]
+
+[[package]]
 name = "six"
 version = "1.17.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1121,7 +1139,7 @@ name = "superset-dbt-fed"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
-    { name = "dbt-core" },
+    { name = "dbt" },
     { name = "dbt-duckdb" },
     { name = "duckdb" },
     { name = "duckdb-engine" },
@@ -1133,7 +1151,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "dbt-core", specifier = ">=1.11.2" },
+    { name = "dbt", specifier = ">=1.0.0.40.12" },
     { name = "dbt-duckdb", specifier = ">=1.10.0" },
     { name = "duckdb", specifier = ">=1.4.3" },
     { name = "duckdb-engine", specifier = ">=0.17.0" },

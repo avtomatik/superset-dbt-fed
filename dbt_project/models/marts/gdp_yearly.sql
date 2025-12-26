@@ -1,7 +1,7 @@
 {{ config(materialized = 'table') }} WITH quarterly AS (
     SELECT
         date,
-        value :: DOUBLE PRECISION AS gdp_value
+        gdp_value
     FROM
         {{ ref('stg_fred_gdpc1') }}
 ),

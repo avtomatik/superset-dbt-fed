@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: stg_fred_gdpc1
+    description: "Cleaned quarterly GDP data from FRED"
+    columns:
+      - name: date
+        tests:
+          - not_null
+          - unique
+
+      - name: gdp_value
+        tests:
+          - not_null

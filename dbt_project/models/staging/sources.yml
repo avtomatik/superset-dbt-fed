@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: fred
+    database: warehouse
+    schema: main
+    tables:
+      - name: gdpc1
+        description: "Quarterly real GDP from FRED"
+        columns:
+          - name: date
+            tests:
+              - not_null
+          - name: value
+            description: "GDP value (numeric, may contain nulls)"
