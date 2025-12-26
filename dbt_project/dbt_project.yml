@@ -1,0 +1,17 @@
+name: "superset_dbt_fed"
+version: "0.1.0"
+profile: "superset_dbt_fed"
+
+model-paths: ["models"]
+
+models:
+  superset_dbt_fed:
+    staging:
+      +materialized: table
+    marts:
+      +materialized: table
+
+target-path: "target"
+clean-targets:
+  - target
+  - dbt_modules

@@ -9,13 +9,6 @@ from sqlalchemy import create_engine
 
 
 @dataclass
-class DBWriteRequest:
-    df: pd.DataFrame
-    table_name: str
-    db_path: str
-
-
-@dataclass
 class SeriesRequest:
     api_base: str
     api_key: str
@@ -23,6 +16,13 @@ class SeriesRequest:
     start_date: str | None = None
     end_date: str | None = None
     file_type: str = "json"
+
+
+@dataclass
+class DBWriteRequest:
+    df: pd.DataFrame
+    table_name: str
+    db_path: str
 
 
 load_dotenv()
@@ -79,7 +79,7 @@ if __name__ == "__main__":
 
     db_req = DBWriteRequest(
         df=df,
-        table_name=f"fred_{series_req.series_id.lower()}",
+        table_name=series_req.series_id.lower(),
         db_path=DB_PATH,
     )
 
