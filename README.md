@@ -26,7 +26,7 @@ FRED_API_KEY=your_fred_api_key_here
 Set up and activate your virtual environment, then synchronize it.
 
 ```bash
-$ uv venv
+$ uv venv --python 3.12
 $ source .venv/bin/activate
 $ uv sync
 ```
