@@ -2,8 +2,7 @@ version: 2
 
 sources:
   - name: fred
-    database: warehouse
-    schema: main
+    schema: raw
     tables:
       - name: gdpc1
         description: "Quarterly real GDP from FRED"
@@ -11,5 +10,6 @@ sources:
           - name: date
             tests:
               - not_null
+              - unique
           - name: value
             description: "GDP value (numeric, may contain nulls)"

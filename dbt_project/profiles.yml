@@ -3,5 +3,4 @@ superset_dbt_fed:
   outputs:
     dev:
       type: duckdb
-      path: data/processed/warehouse.duckdb
-      schema: main
+      path: ./data/processed/warehouse.duckdb
