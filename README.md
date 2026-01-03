@@ -36,7 +36,7 @@ $ uv sync
 To fetch the data from the external API, run the `fred_downloader.py` script. This will download the necessary data before running any transformations.
 
 ```bash
-$ uv run python data_ingestion/fred_downloader.py
+$ uv run python -m data_ingestion.fred_downloader
 ```
 
 ### Step 5: Running the DBT Project

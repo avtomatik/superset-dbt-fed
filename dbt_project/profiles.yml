@@ -2,5 +2,10 @@ superset_dbt_fed:
   target: dev
   outputs:
     dev:
-      type: duckdb
-      path: ./data/processed/warehouse.duckdb
+      type: postgres
+      host: "{{ env_var('WAREHOUSE_HOST') }}"
+      port: "{{ env_var('WAREHOUSE_PORT') | int }}"
+      dbname: "{{ env_var('WAREHOUSE_DBNAME') }}"
+      user: "{{ env_var('WAREHOUSE_USER') }}"
+      password: "{{ env_var('WAREHOUSE_PASSWORD') }}"
+      schema: staging
