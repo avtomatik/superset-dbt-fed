@@ -1,4 +1,5 @@
-{{ config(materialized = 'table') }} WITH quarterly AS (
+{{ config(materialized = 'table', schema='marts') }}
+WITH quarterly AS (
     SELECT
         date,
         gdp_value

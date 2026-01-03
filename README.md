@@ -44,7 +44,14 @@ $ uv run python -m data_ingestion.fred_downloader
 Now that your data is ingested, you can run your DBT project and execute a transformation:
 
 ```bash
-$ uv run dbt run --project-dir dbt_project [--select stg_fred_gdpc1 gdp_yearly]
+$ export WAREHOUSE_HOST=localhost
+$ export WAREHOUSE_PORT=5432
+$ export WAREHOUSE_DBNAME=warehouse
+$ export WAREHOUSE_USER=analytics
+$ export WAREHOUSE_PASSWORD=analytics
+$ uv run dbt run --profiles-dir dbt_project --project-dir dbt_project
+$ uv run dbt test --profiles-dir dbt_project --project-dir dbt_project
+$ uv run dbt build --profiles-dir dbt_project --project-dir dbt_project
 ```
 
 ---

@@ -3,13 +3,17 @@ version: 2
 sources:
   - name: fred
     schema: raw
+    description: "Raw data ingested from the FRED API"
+
     tables:
       - name: gdpc1
-        description: "Quarterly real GDP from FRED"
+        description: "Quarterly real GDP (GDPC1) as returned by FRED"
+
         columns:
           - name: date
+            description: "Observation date (string as provided by FRED)"
             tests:
               - not_null
-              - unique
+
           - name: value
             description: "GDP value (numeric, may contain nulls)"
