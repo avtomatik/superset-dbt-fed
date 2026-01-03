@@ -123,5 +123,9 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# DuckDB
-*.duckdb
+# dbt
+.user.yml
+
+# Superset
+superset.db
+superset_config.py

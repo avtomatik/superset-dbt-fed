@@ -1,0 +1,11 @@
+services:
+  airbyte:
+    image: airbyte/airbyte:latest
+    container_name: airbyte
+    ports:
+      - "8000:8000"
+    volumes:
+      - airbyte_data:/data
+
+volumes:
+  airbyte_data:
