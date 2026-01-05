@@ -1,4 +1,5 @@
-{{ config(materialized = 'table', schema='marts') }}
+{{ config(materialized = 'table', schema = 'marts') }}
+
 WITH quarterly AS (
     SELECT
         date,
@@ -9,7 +10,7 @@ WITH quarterly AS (
 yearly AS (
     SELECT
         EXTRACT(
-            year
+            YEAR
             FROM
                 date
         ) :: INT AS year,
@@ -19,6 +20,7 @@ yearly AS (
     GROUP BY
         year
 )
+
 SELECT
     year,
     gdp_geom_mean AS gdp_value

@@ -1,4 +1,5 @@
-{{ config(materialized = 'table', schema='staging') }}
+{{ config(materialized = 'table', schema = 'staging') }}
+
 WITH raw AS (
   SELECT
     date,
@@ -6,6 +7,7 @@ WITH raw AS (
   FROM
     {{ source('fred', 'gdpc1') }}
 )
+
 SELECT
   date :: DATE AS date,
   gdp_value

@@ -1,0 +1,14 @@
+exposures:
+  - name: gdp_dashboard
+    label: "GDP Dashboard"
+    type: dashboard
+    maturity: medium
+    url: http://localhost:8088/superset/dashboard/1/
+    description: "Superset dashboard showing yearly GDP trends"
+
+    depends_on:
+      - ref('gdp_yearly')
+
+    owner:
+      name: Analytics Team
+      email: analytics@example.com

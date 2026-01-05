@@ -11,7 +11,7 @@ sources:
 
         columns:
           - name: date
-            description: "Observation date (string as provided by FRED)"
+            description: "Observation date (DATE, parsed from FRED response)"
             tests:
               - not_null
 
