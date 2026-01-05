@@ -1,0 +1,54 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    env_file: .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  python:
+    build:
+      context: .
+      dockerfile: data_ingestion/Dockerfile
+    container_name: ingestion
+    env_file: .env
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  superset:
+    build: ./superset
+    container_name: superset
+    env_file: .env
+    ports:
+      - "8088:8088"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./superset:/app/superset_home
+    command: >
+      /bin/sh -c " export SUPERSET_DATABASE_URI=${SUPERSET_DATABASE_URI} && superset db upgrade && superset fab list-users | grep -q admin ||
+        superset fab create-admin \
+          --username admin \
+          --firstname Admin \
+          --lastname User \
+          --email admin@superset.com \
+          --password admin &&
+      superset init && superset run -h 0.0.0.0 -p 8088 "
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8088/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+volumes:
+  postgres_data:
