@@ -1,0 +1,7 @@
+database: warehouse
+schema: marts
+table_name: gdp_yearly
+metrics:
+  - metric_name: gdp_value
+    expression: gdp_value
+    description: "Yearly GDP geometric mean"
