@@ -35,15 +35,8 @@ services:
         condition: service_healthy
     volumes:
       - ./superset:/app/superset_home
-    command: >
-      /bin/sh -c " export SUPERSET_DATABASE_URI=${SUPERSET_DATABASE_URI} && superset db upgrade && superset fab list-users | grep -q admin ||
-        superset fab create-admin \
-          --username admin \
-          --firstname Admin \
-          --lastname User \
-          --email admin@superset.com \
-          --password admin &&
-      superset init && superset run -h 0.0.0.0 -p 8088 "
+      - ./.env:/app/.env
+    command: ["/app/superset_home/superset_entrypoint.sh"]
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:8088/health" ]
       interval: 30s
