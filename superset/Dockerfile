@@ -2,9 +2,7 @@ FROM apache/superset:latest
 
 USER root
 
-RUN pip install --no-cache-dir psycopg2-binary
-
-RUN pip install --no-cache-dir "psycopg[binary]"
+RUN /bin/bash -c "source /app/.venv/bin/activate && pip install psycopg2-binary"
 
 COPY ./superset_entrypoint.sh /app/superset_home/superset_entrypoint.sh
 

@@ -16,9 +16,6 @@ WAREHOUSE_USER = os.getenv("WAREHOUSE_USER")
 WAREHOUSE_PASSWORD = os.getenv("WAREHOUSE_PASSWORD")
 
 
-SQLALCHEMY_DATABASE_URI = f"postgresql://{WAREHOUSE_USER}:{WAREHOUSE_PASSWORD}@{WAREHOUSE_HOST}:{WAREHOUSE_PORT}/{WAREHOUSE_DBNAME}"
-
-
 # =============================================================================
 # Feature flags
 # =============================================================================
