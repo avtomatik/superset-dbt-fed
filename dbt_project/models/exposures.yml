@@ -10,5 +10,5 @@ exposures:
       - ref('gdp_yearly')
 
     owner:
-      name: Analytics Team
-      email: analytics@example.com
+      name: "{{ env_var('SUPERSET_FIRSTNAME') }} {{ env_var('SUPERSET_LASTNAME') }}"
+      email: "{{ env_var('SUPERSET_EMAIL') }}"

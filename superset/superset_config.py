@@ -9,13 +9,17 @@ SECRET_KEY = os.getenv("SUPERSET_SECRET_KEY")
 # =============================================================================
 # Database (Superset metadata DB)
 # =============================================================================
+WAREHOUSE_DIALECT_DRIVER = os.getenv("WAREHOUSE_DIALECT_DRIVER")
 WAREHOUSE_HOST = os.getenv("WAREHOUSE_HOST")
 WAREHOUSE_PORT = os.getenv("WAREHOUSE_PORT")
 WAREHOUSE_DBNAME = os.getenv("WAREHOUSE_DBNAME")
 WAREHOUSE_USER = os.getenv("WAREHOUSE_USER")
 WAREHOUSE_PASSWORD = os.getenv("WAREHOUSE_PASSWORD")
 
-SQLALCHEMY_DATABASE_URI = f"postgresql+psycopg2://{WAREHOUSE_USER}:{WAREHOUSE_PASSWORD}@{WAREHOUSE_HOST}:{WAREHOUSE_PORT}/{WAREHOUSE_DBNAME}"
+SQLALCHEMY_DATABASE_URI = (
+    f"{WAREHOUSE_DIALECT_DRIVER}://{WAREHOUSE_USER}:{WAREHOUSE_PASSWORD}@"
+    f"{WAREHOUSE_HOST}:{WAREHOUSE_PORT}/{WAREHOUSE_DBNAME}"
+)
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
