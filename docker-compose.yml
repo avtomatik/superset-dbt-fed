@@ -13,6 +13,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - fred_pipeline
 
   python:
     build:
@@ -23,6 +25,8 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    networks:
+      - fred_pipeline
 
   dbt:
     image: ghcr.io/dbt-labs/dbt-postgres:latest
@@ -38,7 +42,7 @@ services:
         condition: service_healthy
     entrypoint: [ "dbt", "run", "--profiles-dir", "/dbt_project", "--project-dir", "/dbt_project" ]
     networks:
-      - default
+      - fred_pipeline
 
   superset:
     build: ./superset
@@ -58,11 +62,14 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
+    networks:
+      - fred_pipeline
+
 
 volumes:
   postgres_data:
 
 
 networks:
-  default:
+  fred_pipeline:
     driver: bridge

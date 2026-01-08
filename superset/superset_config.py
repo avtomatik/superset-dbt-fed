@@ -15,6 +15,9 @@ WAREHOUSE_DBNAME = os.getenv("WAREHOUSE_DBNAME")
 WAREHOUSE_USER = os.getenv("WAREHOUSE_USER")
 WAREHOUSE_PASSWORD = os.getenv("WAREHOUSE_PASSWORD")
 
+SQLALCHEMY_DATABASE_URI = f"postgresql+psycopg2://{WAREHOUSE_USER}:{WAREHOUSE_PASSWORD}@{WAREHOUSE_HOST}:{WAREHOUSE_PORT}/{WAREHOUSE_DBNAME}"
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+
 
 # =============================================================================
 # Feature flags
