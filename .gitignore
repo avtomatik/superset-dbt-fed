@@ -128,3 +128,4 @@ dmypy.json
 
 # Superset
 superset.db
+.bash_history

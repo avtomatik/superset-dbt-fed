@@ -9,7 +9,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER}" ]
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -23,6 +23,22 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+
+  dbt:
+    image: ghcr.io/dbt-labs/dbt-postgres:latest
+    container_name: dbt
+    env_file: .env
+    environment:
+      - DBT_PROFILES_DIR=/dbt_project
+    volumes:
+      - ./dbt_project:/dbt_project
+      - ./.env:/app/.env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    entrypoint: [ "dbt", "run", "--profiles-dir", "/dbt_project", "--project-dir", "/dbt_project" ]
+    networks:
+      - default
 
   superset:
     build: ./superset
@@ -45,3 +61,8 @@ services:
 
 volumes:
   postgres_data:
+
+
+networks:
+  default:
+    driver: bridge
