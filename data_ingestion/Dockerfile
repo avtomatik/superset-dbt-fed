@@ -9,8 +9,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN pip install --no-cache-dir dbt-core>=1.11.2 \
     dbt-postgres>=1.10.0 \
-    "psycopg[binary]">=3.3.2 \
-    pydantic-settings>=2.12.0
+    "psycopg[binary]">=3.3.2
 
 COPY . .
 

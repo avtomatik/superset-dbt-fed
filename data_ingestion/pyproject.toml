@@ -1,13 +1,9 @@
 [project]
-name = "superset-dbt-fed"
+name = "data-ingestion"
 version = "0.1.0"
-description = "An end-to-end data pipeline for Federal Reserve Economic Data (FRED) data."
-readme = "README.md"
+description = "Pulls data from the FRED API. Loads raw data into PostgreSQL."
 requires-python = ">=3.12"
-
 dependencies = [
-    "dbt-core>=1.11.2",
-    "dbt-postgres>=1.10.0",
-    "psycopg[binary]>=3.3.2",
-    "pydantic-settings>=2.12.0",
+    "psycopg>=3.3.2",
+    "requests>=2.32.5",
 ]
