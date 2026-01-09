@@ -1,7 +1,31 @@
+version: 1.0.0
 database: warehouse
 schema: marts
 table_name: gdp_yearly
+
+columns:
+  - column_name: year
+    verbose_name: Year
+    is_dttm: true
+    type: DATE
+    description: Calendar year
+
+  - column_name: gdp_value
+    verbose_name: GDP (Yearly, Geometric Mean)
+    type: NUMERIC
+    description: Yearly GDP derived from monthly GDPC1 using geometric mean
+
 metrics:
   - metric_name: gdp_value
-    expression: gdp_value
-    description: "Yearly GDP geometric mean"
+    verbose_name: GDP
+    expression: SUM(gdp_value)
+    metric_type: sum
+    description: Total yearly GDP
+
+  - metric_name: yoy_growth_pct
+    verbose_name: YoY GDP Growth %
+    expression: |
+      (SUM(gdp_value) /
+       LAG(SUM(gdp_value)) OVER (ORDER BY year) - 1)
+    metric_type: expression
+    description: Year-over-year GDP growth rate

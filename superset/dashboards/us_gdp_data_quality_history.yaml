@@ -1,0 +1,35 @@
+version: 1.0.0
+dashboard_title: "US GDP – Data Quality & History"
+slug: us-gdp-data-quality-history
+charts:
+  - chart_name: Full History (Table)
+    viz_type: table
+    dataset: marts.gdp_yearly
+    params:
+      columns:
+        - year
+        - gdp_value
+      sort_by:
+        - year: desc
+
+  - chart_name: Long-Term GDP Trend (Line)
+    viz_type: line
+    dataset: marts.gdp_yearly
+    params:
+      groupby:
+        - year
+      metrics:
+        - gdp_value
+      time_grain: year
+      format: "$,.2f"
+
+  - chart_name: GDP Revisions Over Time (Line)
+    viz_type: line
+    dataset: snapshots.gdp_yearly_snapshot
+    params:
+      groupby:
+        - year
+      metrics:
+        - gdp_value
+      time_grain: year
+      format: "$,.2f"

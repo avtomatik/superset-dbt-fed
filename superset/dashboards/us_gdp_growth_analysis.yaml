@@ -1,0 +1,39 @@
+version: 1.0.0
+dashboard_title: "US GDP – Growth Analysis"
+slug: us-gdp-growth-analysis
+charts:
+  - chart_name: YoY GDP Growth % (Bar)
+    viz_type: bar
+    dataset: marts.gdp_yearly
+    params:
+      groupby:
+        - year
+      metrics:
+        - yoy_growth_pct
+      time_grain: year
+      format: "0.00%"
+      y_axis_format: "0.00%"
+
+  - chart_name: GDP Level vs Growth
+    viz_type: mixed_timeseries
+    dataset: marts.gdp_yearly
+    params:
+      groupby:
+        - year
+      metrics:
+        - gdp_value
+        - yoy_growth_pct
+      time_grain: year
+      y_axis_format: "$,.2f"
+      secondary_y_axis: true
+
+  - chart_name: Yearly GDP Breakdown (Table)
+    viz_type: table
+    dataset: marts.gdp_yearly
+    params:
+      columns:
+        - year
+        - gdp_value
+        - yoy_growth_pct
+      sort_by:
+        - year: desc

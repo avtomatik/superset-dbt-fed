@@ -44,6 +44,7 @@ services:
       /bin/bash -c "
       dbt run --profiles-dir /dbt_project --project-dir /dbt_project &&
       dbt test --profiles-dir /dbt_project --project-dir /dbt_project &&
+      dbt snapshot --profiles-dir /dbt_project --project-dir /dbt_project &&
       dbt build --profiles-dir /dbt_project --project-dir /dbt_project"
     networks:
       - fred_pipeline

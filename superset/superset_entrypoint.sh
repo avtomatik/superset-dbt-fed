@@ -1,8 +1,7 @@
 #!/bin/bash
+set -e
 
 export $(grep -v '^#' .env | xargs)
-
-export SQLALCHEMY_DATABASE_URI=${SQLALCHEMY_DATABASE_URI}
 
 superset db upgrade
 
@@ -16,5 +15,9 @@ if ! superset fab list-users | grep -q ${SUPERSET_USERNAME}; then
 fi
 
 superset init
+
+# =============================================================================
+# TODO: Import datasets & dashboards
+# =============================================================================
 
 superset run -h 0.0.0.0 -p 8088

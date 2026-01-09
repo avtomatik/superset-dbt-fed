@@ -3,6 +3,7 @@ version: "0.1.0"
 profile: "superset_dbt_fed"
 
 model-paths: ["models"]
+snapshot-paths: ["snapshots"]
 
 models:
   superset_dbt_fed:

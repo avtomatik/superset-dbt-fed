@@ -1,0 +1,46 @@
+version: 1.0.0
+dashboard_title: "US GDP – Executive Overview"
+slug: us-gdp-overview
+charts:
+  - chart_name: Latest GDP
+    viz_type: big_number
+    dataset: marts.gdp_yearly
+    params:
+      groupby:
+        - year
+      metrics:
+        - gdp_value
+      time_grain: year
+      time_range: "No filter"
+      rolling_type: "last"
+      format: "$,.2f"
+
+  - chart_name: YoY GDP Growth
+    viz_type: big_number
+    dataset: marts.gdp_yearly
+    params:
+      groupby:
+        - year
+      metrics:
+        - yoy_growth_pct
+      time_grain: year
+      time_range: "No filter"
+      format: "0.00%"
+
+  - chart_name: GDP Over Time (Trend)
+    viz_type: line
+    dataset: marts.gdp_yearly
+    params:
+      groupby:
+        - year
+      metrics:
+        - gdp_value
+      time_grain: year
+      format: "$,.2f"
+
+  - chart_name: Year Filter
+    viz_type: filter_box
+    dataset: marts.gdp_yearly
+    params:
+      columns:
+        - year
